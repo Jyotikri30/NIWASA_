@@ -20,21 +20,6 @@
     };
   }
 
-  function whatsappUrl(lead) {
-    const number = config.WHATSAPP_NUMBER || "919304687036";
-    const message = [
-      "New NIWASA consultation request",
-      "",
-      "Name: " + lead.name,
-      "Phone: " + lead.phone,
-      "Email: " + lead.email,
-      "Project Type: " + lead.project_type,
-      "Message: " + (lead.message || "Not provided")
-    ].join("\n");
-
-    return "https://wa.me/" + encodeURIComponent(number) + "?text=" + encodeURIComponent(message);
-  }
-
   function saveToGoogleSheet(lead) {
     if (!config.GOOGLE_SCRIPT_URL) return Promise.resolve(false);
 
@@ -75,16 +60,14 @@
       saveToGoogleSheet(lead)
         .then(function () {
           if (window.Toast) {
-            window.Toast.show("Thank you! Your details are saved. WhatsApp will open with your message.", "success");
+            window.Toast.show("Thank you! Your consultation request has been received. Our design expert will contact you shortly.", "success");
           }
-          window.open(whatsappUrl(lead), "_blank", "noopener");
           form.reset();
         })
         .catch(function () {
           if (window.Toast) {
-            window.Toast.show("Could not save to Google Sheet. WhatsApp will still open with your message.", "error");
+            window.Toast.show("Something went wrong while sending your request. Please try again or contact us directly.", "error");
           }
-          window.open(whatsappUrl(lead), "_blank", "noopener");
         })
         .finally(function () {
           setSubmitting(submitButton, false, originalText);

@@ -14,7 +14,12 @@
 
 /* HERO */
 .ao-hero {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2416 60%, #3d3020 100%);
+  background: linear-gradient(
+    135deg,
+    #5F7161 0%,
+    #6D8B74 55%,
+    #A6B89A 100%
+  );
   color: #fff;
   padding: 80px 24px 70px;
   text-align: center;

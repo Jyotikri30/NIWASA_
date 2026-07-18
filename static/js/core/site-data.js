@@ -3,11 +3,11 @@ window.NIWASA_DATA = {
     name: "NIWASA Interior",
     tagline: "Timeless Spaces, Thoughtfully Crafted",
     description: "We create refined interiors that blend elegance, functionality, and individuality designed to elevate the way you live.",
-    phone: "+919304687036",
-    phoneDisplay: "+91 93046 87036",
-    whatsapp: "919304687036",
-    email: "hello@niwasainterior.com",
-    address: "Koramangala, Bangalore",
+    phone: "+917366923109",
+    phoneDisplay: "+91 7366923109",
+    whatsapp: "917366923109",
+    email: "interiorsniwasa.com",
+    address: "Ranchi, Jharkhand, India",
     logo: "static/logo/niwasa-logo.png"
   },
   services: [
