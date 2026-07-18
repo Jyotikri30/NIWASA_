@@ -21,16 +21,45 @@
   }
 
   function saveToGoogleSheet(lead) {
-    if (!config.GOOGLE_SCRIPT_URL) return Promise.resolve(false);
+    if (!config.GOOGLE_SCRIPT_URL) {
+      return Promise.reject(new Error("Google Sheet URL is missing."));
+    }
 
-    return fetch(config.GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
-      body: JSON.stringify(lead)
-    }).then(() => true);
+    return new Promise(function (resolve, reject) {
+      const callbackName = "niwasaLeadCallback_" + Date.now() + "_" + Math.random().toString(36).slice(2);
+      const script = document.createElement("script");
+      const timeout = window.setTimeout(function () {
+        cleanup();
+        reject(new Error("Google Sheet request timed out."));
+      }, 15000);
+
+      function cleanup() {
+        window.clearTimeout(timeout);
+        delete window[callbackName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+      }
+
+      window[callbackName] = function (response) {
+        cleanup();
+        if (response && response.ok) {
+          resolve(response);
+        } else {
+          reject(new Error((response && response.error) || "Google Sheet save failed."));
+        }
+      };
+
+      script.onerror = function () {
+        cleanup();
+        reject(new Error("Could not reach Google Sheet endpoint."));
+      };
+
+      const separator = config.GOOGLE_SCRIPT_URL.indexOf("?") === -1 ? "?" : "&";
+      script.src = config.GOOGLE_SCRIPT_URL + separator +
+        "callback=" + encodeURIComponent(callbackName) +
+        "&payload=" + encodeURIComponent(JSON.stringify(lead));
+
+      document.body.appendChild(script);
+    });
   }
 
   function setSubmitting(button, isSubmitting, originalText) {
@@ -66,7 +95,7 @@
         })
         .catch(function () {
           if (window.Toast) {
-            window.Toast.show("Something went wrong while sending your request. Please try again or contact us directly.", "error");
+            window.Toast.show("Could not save your request. Please check the Google Sheet setup and try again.", "error");
           }
         })
         .finally(function () {

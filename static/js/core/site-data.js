@@ -5,7 +5,6 @@ window.NIWASA_DATA = {
     description: "We create refined interiors that blend elegance, functionality, and individuality designed to elevate the way you live.",
     phone: "+917366923109",
     phoneDisplay: "+91 7366923109",
-    whatsapp: "917366923109",
     email: "interiorsniwasa.com",
     address: "Ranchi, Jharkhand, India",
     logo: "static/logo/niwasa-logo.png"
@@ -199,73 +198,73 @@ window.NIWASA_DATA = {
     {
       title: "Warm Modern Apartment",
       type: "Full Home Interior",
-      image: "static/images/hero/hero3.jpg",
+      image: "https://res.cloudinary.com/wmsfqovf/image/upload/v1783844359/ChatGPT_Image_Jul_12_2026_01_17_37_PM_gik6a0.png",
       details: "A soft neutral home with layered lighting, practical storage, and a refined living-dining flow."
     },
     {
       title: "Tailored Modular Kitchen",
       type: "Kitchen Design",
-      image: "static/images/gallery/modular-kitchen/hero.jpg",
+      image: "https://res.cloudinary.com/wmsfqovf/image/upload/v1783843680/ChatGPT_Image_Jul_9_2026_03_28_53_PM_cdxxbm.png",
       details: "A high-function kitchen planned around everyday cooking, appliance zones, and premium finishes."
     },
     {
       title: "Calm Bedroom Suite",
       type: "Bedroom Interior",
-      image: "static/images/gallery/bedroom/hero.jpg",
+      image: "https://res.cloudinary.com/wmsfqovf/image/upload/v1783836742/custom-bedroom_pjn9g0.png",
       details: "A restful bedroom with warm textures, concealed storage, and a quiet study corner."
     },
     {
       title: "Custom TV Wall",
       type: "Living Room Detail",
-      image: "static/images/services/TV wall.jpg",
+      image: "https://res.cloudinary.com/wmsfqovf/image/upload/v1783844985/ChatGPT_Image_Jul_12_2026_01_59_26_PM_oerdeu.png",
       details: "A sleek entertainment wall with hidden wiring, display shelves, and soft ambient lighting."
     },
     {
       title: "Serene Pooja Corner",
       type: "Sacred Space",
-      image: "static/images/services/pooja-room.jpg",
+      image: "https://res.cloudinary.com/wmsfqovf/image/upload/v1783839912/ChatGPT_Image_Jul_12_2026_12_28_59_PM_qhxvia.png",
       details: "A compact spiritual corner with warm finishes, delicate detailing, storage, and focused lighting."
     },
     {
       title: "Dining With Storage",
       type: "Dining Room Interior",
-      image: "static/images/services/dining-room.jpg",
+      image: "https://res.cloudinary.com/wmsfqovf/image/upload/v1783838299/custom-dining_wu79hf.png",
       details: "A dining space planned with a crockery unit, layered lighting, and a material palette that feels welcoming."
     },
     {
       title: "Soft Bathroom Refresh",
       type: "Bathroom Interior",
-      image: "static/images/services/bathroom.jpg",
+      image: "https://res.cloudinary.com/wmsfqovf/image/upload/v1783838248/walk-in-bathroom_na04ya.png",
       details: "A compact bathroom made brighter with storage-led vanity design and easy-maintenance finishes."
     },
     {
       title: "Kids Room Storage",
       type: "Kids Room",
-      image: "static/images/services/kids-room.jpg",
+      image: "https://res.cloudinary.com/wmsfqovf/image/upload/v1783836743/smart-bedroom_pvzp8x.png",
       details: "A cheerful room with study storage, open display, soft colors, and durable everyday surfaces."
     },
     {
       title: "False Ceiling Glow",
       type: "Lighting Detail",
-      image: "static/images/services/false-ceiling2.jpg",
+      image: "https://res.cloudinary.com/wmsfqovf/image/upload/v1783845068/ChatGPT_Image_Jul_12_2026_02_00_47_PM_i8kcy1.png",
       details: "A ceiling and cove lighting detail that adds depth and warmth without feeling heavy."
     },
     {
       title: "Home Office Nook",
       type: "Office Interior",
-      image: "static/images/services/office.jpg",
+      image: "https://res.cloudinary.com/wmsfqovf/image/upload/v1783842729/ChatGPT_Image_Jul_12_2026_01_21_34_PM_d7b3oz.png",
       details: "A compact work corner with built-in storage, focused lighting, and calm visual details."
     },
     {
       title: "Classic Wardrobe Wall",
       type: "Wardrobe Interior",
-      image: "static/images/services/wardrobe.jpg",
+      image: "https://res.cloudinary.com/wmsfqovf/image/upload/v1783840802/walk-in-wardrobe_bcrmff.png",
       details: "A full-height wardrobe wall with mirror balance, accessory storage, and clean proportions."
     },
     {
       title: "Living Dining Flow",
       type: "Open Plan Interior",
-      image: "static/images/hero/hero5.jpg",
+      image: "https://res.cloudinary.com/wmsfqovf/image/upload/v1783842791/ChatGPT_Image_Jul_12_2026_01_10_43_PM_nwt55b.png",
       details: "A connected living and dining layout designed around movement, hosting, and visual warmth."
     }
   ],

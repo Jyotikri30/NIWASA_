@@ -30,6 +30,18 @@
     document.body.insertAdjacentHTML(
       "afterbegin",
       `
+        <div class="splash-screen" id="splashScreen">
+          <div class="splash-inner">
+            <div class="splash-video-frame">
+              <video class="splash-video" id="splashVideo" autoplay muted playsinline preload="auto" aria-label="${company.name} intro">
+                <source src="niwasa-website-logo.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="splash-brand">${company.name}</div>
+            <div class="splash-line"><span></span></div>
+          </div>
+        </div>
+
         <div class="preloader" id="preloader">
           <div class="preloader-inner">
             <div class="preloader-logo"><img src="${company.logo}" alt="${company.name}"></div>
@@ -149,12 +161,6 @@
           </div>
         </footer>
 
-        <div class="floating-buttons">
-          <a href="https://wa.me/${company.whatsapp}?text=Hello%20NIWASA%20Interior,%20I%20would%20like%20to%20book%20a%20free%20consultation." target="_blank" rel="noopener" class="floating-btn whatsapp-btn" aria-label="Chat on WhatsApp">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.14 6.35 2.14 11.7c0 1.86.54 3.6 1.48 5.08L2 22l5.37-1.56a10.15 10.15 0 0 0 4.67 1.14c5.46 0 9.9-4.35 9.9-9.7S17.5 2 12.04 2Zm5.76 13.64c-.25.69-1.46 1.31-2.04 1.36-.53.05-1.19.07-1.92-.12-.44-.12-1-.32-1.72-.62-3.03-1.28-5.01-4.26-5.16-4.46-.15-.2-1.23-1.61-1.23-3.07s.78-2.18 1.06-2.48c.28-.3.61-.37.82-.37h.59c.19.01.44-.07.69.52.25.6.84 2.06.92 2.2.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.61.17.3.75 1.21 1.6 1.96 1.1.96 2.02 1.26 2.32 1.41.3.15.47.12.65-.07.17-.2.74-.84.94-1.13.2-.3.4-.25.67-.15.27.1 1.72.79 2.01.94.3.15.5.22.57.35.08.12.08.72-.17 1.41Z"/></svg>
-            <span class="floating-btn-tooltip">Chat with us</span>
-          </a>
-        </div>
         <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">&uarr;</button>
         <div class="toast-container" id="toastContainer"></div>
       `

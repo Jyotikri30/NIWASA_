@@ -231,6 +231,33 @@ img {
     display: block;
 }
 
+.image-fallback {
+    width: 100%;
+    min-height: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    color: var(--text-tertiary);
+    text-align: center;
+}
+
+.image-fallback svg {
+    width: 42px;
+    height: 42px;
+    color: var(--gold);
+}
+
+.image-fallback span {
+    color: var(--text-secondary);
+    font-weight: 700;
+    line-height: 1.35;
+}
+
 ul, ol {
     list-style: none;
 }
@@ -347,18 +374,95 @@ h1, h2, h3, h4, h5, h6 {
 /* ============================================================
    PRELOADER
    ============================================================ */
+.splash-screen {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100svh;
+    background:
+        radial-gradient(circle at 50% 42%, rgba(183, 155, 99, .16), transparent 34%),
+        linear-gradient(135deg, #f9f6f1 0%, #efe7da 50%, #f9f6f1 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-preloader);
+    transition: opacity .75s ease, visibility .75s ease;
+}
+
+.splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-inner {
+    text-align: center;
+    width: min(88vw, 520px);
+    display: grid;
+    justify-items: center;
+    gap: 26px;
+}
+
+.splash-video-frame {
+    width: min(74vw, 360px);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 50% 42%, rgba(232, 216, 187, .95), rgba(183, 155, 99, .42) 62%, rgba(155, 130, 76, .62) 100%);
+    border: 1px solid rgba(183, 155, 99, .55);
+    box-shadow:
+        0 28px 80px rgba(45, 42, 38, .12),
+        inset 0 0 34px rgba(183, 155, 99, .25);
+    overflow: hidden;
+    animation: splashFloat 2.6s ease-in-out infinite;
+}
+
+.splash-video {
+    width: 98%;
+    height: 98%;
+    object-fit: cover;
+    display: block;
+}
+
+.splash-brand {
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.splash-line {
+    width: min(220px, 48vw);
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(183, 155, 99, .22);
+    overflow: hidden;
+}
+
+.splash-line span {
+    display: block;
+    width: 46%;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--gold);
+    animation: splashLine 1.25s ease-in-out infinite;
+}
+
 .preloader {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     background: var(--bg-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: var(--z-preloader);
-    transition: opacity 0.6s ease, visibility 0.6s ease;
+    z-index: calc(var(--z-preloader) - 1);
+    transition: opacity .6s ease, visibility .6s ease;
 }
 
 .preloader.hidden {
@@ -399,13 +503,22 @@ h1, h2, h3, h4, h5, h6 {
 
 @keyframes preloaderPulse {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.7; transform: scale(0.97); }
+    50% { opacity: .7; transform: scale(.97); }
 }
 
-@keyframes preloaderBar {
-    0% { width: 0; margin-left: 0; }
-    50% { width: 70%; margin-left: 15%; }
-    100% { width: 0; margin-left: 100%; }
+@keyframes preloaderSpin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes splashFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-8px) scale(1.015); }
+}
+
+@keyframes splashLine {
+    0% { transform: translateX(-110%); }
+    55% { transform: translateX(70%); }
+    100% { transform: translateX(230%); }
 }
 
 
@@ -553,10 +666,6 @@ h1, h2, h3, h4, h5, h6 {
     transition: all var(--transition-base);
     box-shadow: 0 24px 70px rgba(45, 42, 38, .14);
     z-index: 999;
-}
-
-@keyframes preloaderSpin {
-    to { transform: rotate(360deg); }
 }
 
 .nav-dropdown:hover .dropdown-menu {
@@ -1179,18 +1288,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .floating-btn:hover {
     transform: scale(1.1);
-}
-
-/* WhatsApp */
-.whatsapp-btn {
-    background: #25D366;
-    color: #fff;
-    animation: floatingPulse 3s ease-in-out infinite;
-}
-
-.whatsapp-btn:hover {
-    background: #22c55e;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
 }
 
 /* Tooltip */
@@ -2899,7 +2996,4 @@ width:100%;
         padding: 126px 0 56px;
     }
 
-    .preloader-logo img {
-        height: 52px;
-    }
 }

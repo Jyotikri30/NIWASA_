@@ -19,24 +19,56 @@ document.addEventListener('DOMContentLoaded', function() {
     SmoothScroll.init();
     HeroSlider.init();
     AOSLite.init();
+    ImageFallbacks.init();
 });
 
 const Preloader = {
     init: function() {
         const preloader = document.getElementById('preloader');
-        if (!preloader) return;
+        const splash = document.getElementById('splashScreen');
+        const video = document.getElementById('splashVideo');
+        const shouldShowSplash = Boolean(splash);
+        let preloaderHidden = false;
+        let splashHidden = false;
+
+        document.body.style.overflow = 'hidden';
+
+        function hidePreloader() {
+            if (!preloader || preloaderHidden) return;
+            preloaderHidden = true;
+            preloader.classList.add('hidden');
+            if (!shouldShowSplash || splashHidden) document.body.style.overflow = '';
+        }
+
+        function hideSplash() {
+            if (!splash || splashHidden) return;
+            splashHidden = true;
+            splash.classList.add('hidden');
+            hidePreloader();
+            document.body.style.overflow = '';
+        }
+
+        if (shouldShowSplash && video) {
+            video.play().catch(function() {
+                setTimeout(hideSplash, 1400);
+            });
+            video.addEventListener('ended', function() {
+                setTimeout(hideSplash, 250);
+            });
+            video.addEventListener('error', function() {
+                setTimeout(hideSplash, 1200);
+            });
+        }
 
         window.addEventListener('load', function() {
-            setTimeout(function() {
-                preloader.classList.add('hidden');
-                document.body.style.overflow = '';
-            }, 800);
+            if (shouldShowSplash) {
+                setTimeout(hideSplash, 3200);
+            } else {
+                setTimeout(hidePreloader, 800);
+            }
         });
 
-        setTimeout(function() {
-            preloader.classList.add('hidden');
-            document.body.style.overflow = '';
-        }, 3000);
+        setTimeout(shouldShowSplash ? hideSplash : hidePreloader, shouldShowSplash ? 4200 : 3000);
     }
 };
 
@@ -441,3 +473,25 @@ const AOSLite = {
 };
 
 window.AOSLite = AOSLite;
+
+const ImageFallbacks = {
+    init: function() {
+        document.addEventListener('error', function(event) {
+            const img = event.target;
+            if (!img || img.tagName !== 'IMG' || img.dataset.fallbackApplied) return;
+
+            img.dataset.fallbackApplied = 'true';
+            const title = img.dataset.fallbackTitle || img.alt || 'Image unavailable';
+            const fallback = document.createElement('div');
+            fallback.className = 'image-fallback';
+            fallback.innerHTML =
+                '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+                    '<path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h2.1l1.1-1.5h4.6L15.4 5h2.1A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9Z" fill="none" stroke="currentColor" stroke-width="1.6"/>' +
+                    '<circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="1.6"/>' +
+                '</svg>' +
+                '<span>' + title + '</span>';
+
+            img.replaceWith(fallback);
+        }, true);
+    }
+};

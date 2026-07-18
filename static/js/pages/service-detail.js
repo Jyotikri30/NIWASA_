@@ -54,10 +54,10 @@
           </div>
           <div class="features-grid">
             ${service.features.map((feature, index) => {
-              const image = featureImages[index % featureImages.length] || service.image;
+              const image = featureImages[index] || service.image;
               return `
                 <div class="feature-card">
-                  <img src="${image}" alt="${feature}" loading="lazy">
+                  <img src="${image}" alt="${feature}" data-fallback-title="${feature}" loading="lazy">
                   <div class="feature-card-body">
                     <h3>${feature}</h3>
                     <p>${service.description}</p>
